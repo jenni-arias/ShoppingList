@@ -92,11 +92,11 @@ public class ShoppingListActivity extends AppCompatActivity {
 
     private void addItem() {
         String item_text = edit_item.getText().toString();
-     //   if(item_text.isEmpty()) {              // .equals("") = .isEmpty()
+        if(!item_text.isEmpty()) {              // .equals("") = .isEmpty()
             itemList.add(item_text);
             adapter.notifyDataSetChanged();
             edit_item.setText("");
-     //   }
+        }
 
     }
 }
