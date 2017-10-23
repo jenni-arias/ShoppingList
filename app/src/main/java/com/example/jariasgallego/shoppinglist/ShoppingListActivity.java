@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -35,8 +36,8 @@ public class ShoppingListActivity extends AppCompatActivity {
 
         itemList = new ArrayList<>();
         itemList.add(new ShoppingItem("Patatas"));
-        itemList.add(new ShoppingItem("Papel WC"));
-        itemList.add(new ShoppingItem("Helado"));
+        itemList.add(new ShoppingItem("Papel WC", true));
+        itemList.add(new ShoppingItem("Helado", true));
         itemList.add(new ShoppingItem("Copas Danone"));
 
         adapter = new ShoppingListAdapter(
@@ -62,6 +63,15 @@ public class ShoppingListActivity extends AppCompatActivity {
 
         list.setAdapter(adapter);
 
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
+                Log.i("jenn", "onItemClick");
+                itemList.get(pos).toggleChecked();
+                adapter.notifyDataSetChanged();
+            }
+        });
+
         list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> list, View item, int pos, long id) {
@@ -76,7 +86,7 @@ public class ShoppingListActivity extends AppCompatActivity {
         builder.setTitle(R.string.confirm);
         String fmt = getResources().getString(R.string.confirm_message);
 
-        builder.setMessage(String.format(fmt, itemList.get(pos)));
+        builder.setMessage(String.format(fmt, itemList.get(pos).getText()));
 
         builder.setPositiveButton(R.string.remove, new DialogInterface.OnClickListener() {
             @Override
