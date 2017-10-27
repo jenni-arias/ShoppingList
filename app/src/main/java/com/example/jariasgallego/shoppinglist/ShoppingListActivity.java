@@ -179,9 +179,27 @@ public class ShoppingListActivity extends AppCompatActivity {
             case R.id.clear_checked:
                 clearChecked();
                 return true;
+            case R.id.clear_all:
+                clearAll();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void clearAll() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.confirm);
+        builder.setMessage(R.string.confirm_clear_all);
+        builder.setPositiveButton(R.string.clear_all, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                itemList.clear();
+                adapter.notifyDataSetChanged();
+            }
+        });
+        builder.setNegativeButton(android.R.string.cancel, null);
+        builder.create().show();
     }
 
     private void clearChecked() {

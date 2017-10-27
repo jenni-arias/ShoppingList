@@ -3,4 +3,9 @@
     <string name="confirm">Confirmació</string>
     <string name="confirm_message">Estás segur que vols eliminar \'%1$s\'?</string>
     <string name="remove">Eliminar</string>
+    <string name="cannot_read">No s\'ha pogut llegir la llista</string>
+    <string name="cannot_write">No s\'ha pogut escriure la llista</string>
+    <string name="clear_all">Borrar tot</string>
+    <string name="clear_checked">Borrar items seleccionats</string>
+    <string name="confirm_clear_all">Estás segur que vols borrar tots els items?</string>
 </resources>
